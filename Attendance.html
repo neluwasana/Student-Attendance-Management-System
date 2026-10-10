@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>QR Attendance | IT ACADEMY </title>
+    <link rel="icon" type="image/jpg" href="VG.jpg">
+    <link rel="stylesheet" href="Attendance.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" data-aos="fade-right" data-aos-duration="800">
+        <!-- Replaceable Logo Placeholder -->
+        <div class="logo-placeholder-container" title="IT ACADEMY  - Replaceable Brand Logo">
+            <div class="logo-frame">
+                <img src="VG.jpg" alt="Visual Grid Academy Logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-fallback" style="display:none;">VG</div>
+            </div>
+            <div class="brand-text-block">
+                <span class="brand-title">IT ACADEMY </span>
+                <span class="brand-subtitle">Attendance System</span>
+            </div>
+        </div>
+
+        <nav class="list">
+            <a href="Index Page.html"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a>
+            <a href="Cards.html"><i class="fa fa-user-shield" aria-hidden="true"></i><span>Admin Panel</span></a>
+            <a href="Attendance.html" class="active"><i class="fa fa-clipboard-check"
+                    aria-hidden="true"></i><span>Attendance</span></a>
+        </nav>
+
+        <button class="list2" onclick="logout()" type="button">
+            <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+            <span>Logout</span>
+        </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container" data-aos="fade-up" data-aos-duration="900">
+            <section id="overview">
+                <h1><i class="fa fa-qrcode"></i> QR Code Attendance System</h1>
+
+                <!-- Scanner Preview -->
+                <div class="scanner-container">
+                    <div id="reader"></div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button id="startScan" type="button">
+                        <i class="fa fa-camera"></i> Start Scanning
+                    </button>
+                    <button id="stopScan" type="button">
+                        <i class="fa fa-stop-circle"></i> Stop Scanning
+                    </button>
+                    <button id="summaryBtn" type="button">
+                        <i class="fa fa-chart-bar"></i> View Summary
+                    </button>
+                </div>
+
+                <!-- Scan Result -->
+                <div id="result">Scan result will appear here after scanning a student QR code&hellip;</div>
+
+                <!-- Filter -->
+                <div class="filter-container">
+                    <input type="text" id="filterInput" placeholder="Filter by student name&hellip;">
+                    <button id="filterBtn" type="button">
+                        <i class="fa fa-search"></i> Filter
+                    </button>
+                </div>
+
+                <!-- Records Table -->
+                <div class="records-container">
+                    <h2><i class="fa fa-list-alt"></i> Attendance Records</h2>
+                    <table id="recordsTable">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>In Time</th>
+                                <th>Out Time</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordsBody">
+                            <!-- Records will be added here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Summary Modal -->
+                <div id="summaryModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <h2><i class="fa fa-chart-pie"></i> Attendance Summary</h2>
+                        <div id="summaryContent"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+    </main>
+
+    <script src="Index Page.js"></script>
+    <script src="Attendance.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

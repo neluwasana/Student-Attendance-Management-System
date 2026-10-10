@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | IT ACADEMY</title>
+    <link rel="icon" type="image/jpg" href="VG.jpg">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="Cards.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="logo-placeholder-container">
+            <div class="logo-frame">
+                <img src="VG.jpg" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-fallback" style="display:none;">VG</div>
+            </div>
+            <div class="brand-text-block">
+                <span class="brand-title">IT ACADEMY</span>
+                <span class="brand-subtitle">Attendance System</span>
+            </div>
+        </div>
+        <nav class="list">
+            <a href="Index Page.html"><i class="fa fa-home"></i><span>Home</span></a>
+            <a href="Cards.html" class="active"><i class="fa fa-user-shield"></i><span>Admin Panel</span></a>
+            <a href="Attendance.html"><i class="fa fa-clipboard-check"></i><span>Attendance</span></a>
+        </nav>
+        <button class="list2" onclick="logout()" type="button"><i class="fa fa-sign-out-alt"></i><span>Logout</span></button>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <!-- Admin Usage Tools -->
+        <section id="overview" data-aos="fade-up" data-aos-duration="800">
+            <h1 class="admin-head">Admin Usage Tools</h1>
+            <p class="admin-subhead">Access core institutional modules, student records, ID card generation, and live attendance.</p>
+            <div class="buttons">
+                <button class="view-cards-btn" onclick="move()" type="button"><i class="fa fa-users"></i><span>Student Records</span></button>
+                <button class="create-cards-btn" onclick="move1()" type="button"><i class="fa fa-id-card"></i><span>Create Cards</span></button>
+                <button class="Student-records" onclick="studentRecords()" type="button"><i class="fa fa-clipboard-list"></i><span>Student Attendance</span></button>
+                <button class="contact-admin" onclick="admincontact()" type="button"><i class="fa fa-address-book"></i><span>Owner Contact</span></button>
+            </div>
+        </section>
+
+        <!-- Generated Student ID Cards -->
+        <section id="overview-cards" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="course-title">Generated Student ID Cards</h2>
+            <div class="main-container">
+                <div class="id-cards">
+
+                    <!-- CARD 1: Software Engineering -->
+                    <div class="id-card-item theme-violet">
+                        <div class="id-card-top-bar"></div>
+                        <div class="id-card-header">
+                            <div class="id-card-logo-wrap"><img src="VG.jpg" alt="Logo"></div>
+                            <div class="id-card-brand"><span class="id-card-institute">IT ACADEMY</span><span class="id-card-cardtype">STUDENT PASS</span></div>
+                            <span class="id-card-chip-tag">SE</span>
+                        </div>
+                        <div class="id-card-photo-section">
+                            <div class="id-card-photo-frame"><img src="images/nelu.jpeg" alt="Kavindu" class="id-card-photo"></div>
+                            <h3 class="id-card-name">Kavindu Perera</h3>
+                            <span class="id-card-id-badge">ID: IT-2024-0101</span>
+                        </div>
+                        <div class="id-card-details">
+                            <div class="id-card-detail-row"><span class="id-card-label">PROGRAMME</span><span class="id-card-val">B.Sc Software Eng.</span></div>
+                            <div class="id-card-detail-row"><span class="id-card-label">YEAR</span><span class="id-card-val">Year 2 • Sem 1</span></div>
+                        </div>
+                        <div class="id-card-qr-section">
+                            <div class="id-card-qr-box"><canvas id="qrCanvas1" width="68" height="68"></canvas></div>
+                            <div class="id-card-security-meta"><span class="id-card-sec-code"><i class="fas fa-shield-alt"></i> VERIFIED ID</span><span class="id-card-validity">2024 - 2026</span></div>
+                        </div>
+                        <div class="id-card-barcode-strip"><span>||||| |||| |||||| |||| ||||| |||||||</span></div>
+                    </div>
+
+                    <!-- CARD 2: Cybersecurity -->
+                    <div class="id-card-item theme-emerald">
+                        <div class="id-card-top-bar"></div>
+                        <div class="id-card-header">
+                            <div class="id-card-logo-wrap"><img src="VG.jpg" alt="Logo"></div>
+                            <div class="id-card-brand"><span class="id-card-institute">IT ACADEMY</span><span class="id-card-cardtype">SECURITY PASS</span></div>
+                            <span class="id-card-chip-tag">NET</span>
+                        </div>
+                        <div class="id-card-photo-section">
+                            <div class="id-card-photo-frame"><img src="images/person (2).jpeg" alt="Dinuka" class="id-card-photo"></div>
+                            <h3 class="id-card-name">Dinuka Madushan</h3>
+                            <span class="id-card-id-badge">ID: IT-2024-0142</span>
+                        </div>
+                        <div class="id-card-details">
+                            <div class="id-card-detail-row"><span class="id-card-label">PROGRAMME</span><span class="id-card-val">B.Sc Cybersecurity</span></div>
+                            <div class="id-card-detail-row"><span class="id-card-label">YEAR</span><span class="id-card-val">Year 3 • Sem 2</span></div>
+                        </div>
+                        <div class="id-card-qr-section">
+                            <div class="id-card-qr-box"><canvas id="qrCanvas2" width="68" height="68"></canvas></div>
+                            <div class="id-card-security-meta"><span class="id-card-sec-code"><i class="fas fa-check-circle"></i> ENROLLED</span><span class="id-card-validity">2024 - 2026</span></div>
+                        </div>
+                        <div class="id-card-barcode-strip"><span>|||||| ||||| |||| |||||| |||| ||||||</span></div>
+                    </div>
+
+                    <!-- CARD 3: Interactive Media -->
+                    <div class="id-card-item theme-cyan">
+                        <div class="id-card-top-bar"></div>
+                        <div class="id-card-header">
+                            <div class="id-card-logo-wrap"><img src="VG.jpg" alt="Logo"></div>
+                            <div class="id-card-brand"><span class="id-card-institute">IT ACADEMY</span><span class="id-card-cardtype">CAMPUS ID</span></div>
+                            <span class="id-card-chip-tag">UI/UX</span>
+                        </div>
+                        <div class="id-card-photo-section">
+                            <div class="id-card-photo-frame"><img src="images/person (3).jpeg" alt="Sanjana" class="id-card-photo"></div>
+                            <h3 class="id-card-name">Sanjana Fernando</h3>
+                            <span class="id-card-id-badge">ID: IT-2024-0189</span>
+                        </div>
+                        <div class="id-card-details">
+                            <div class="id-card-detail-row"><span class="id-card-label">PROGRAMME</span><span class="id-card-val">B.Sc Interactive Media</span></div>
+                            <div class="id-card-detail-row"><span class="id-card-label">YEAR</span><span class="id-card-val">Year 1 • Sem 2</span></div>
+                        </div>
+                        <div class="id-card-qr-section">
+                            <div class="id-card-qr-box"><canvas id="qrCanvas3" width="68" height="68"></canvas></div>
+                            <div class="id-card-security-meta"><span class="id-card-sec-code"><i class="fas fa-shield-alt"></i> VERIFIED ID</span><span class="id-card-validity">2024 - 2027</span></div>
+                        </div>
+                        <div class="id-card-barcode-strip"><span>|||| |||||| ||||| ||||||| |||| |||||</span></div>
+                    </div>
+
+                    <!-- CARD 4: Graphic Design -->
+                    <div class="id-card-item theme-amber">
+                        <div class="id-card-top-bar"></div>
+                        <div class="id-card-header">
+                            <div class="id-card-logo-wrap"><img src="VG.jpg" alt="Logo"></div>
+                            <div class="id-card-brand"><span class="id-card-institute">IT ACADEMY</span><span class="id-card-cardtype">STUDENT CARD</span></div>
+                            <span class="id-card-chip-tag">ART</span>
+                        </div>
+                        <div class="id-card-photo-section">
+                            <div class="id-card-photo-frame"><img src="images/person (6).jpeg" alt="Tharushi" class="id-card-photo"></div>
+                            <h3 class="id-card-name">Tharushi Silva</h3>
+                            <span class="id-card-id-badge">ID: IT-2024-0215</span>
+                        </div>
+                        <div class="id-card-details">
+                            <div class="id-card-detail-row"><span class="id-card-label">PROGRAMME</span><span class="id-card-val">B.A Graphic Design</span></div>
+                            <div class="id-card-detail-row"><span class="id-card-label">YEAR</span><span class="id-card-val">Year 2 • Sem 2</span></div>
+                        </div>
+                        <div class="id-card-qr-section">
+                            <div class="id-card-qr-box"><canvas id="qrCanvas4" width="68" height="68"></canvas></div>
+                            <div class="id-card-security-meta"><span class="id-card-sec-code"><i class="fas fa-star"></i> HONORS</span><span class="id-card-validity">2024 - 2026</span></div>
+                        </div>
+                        <div class="id-card-barcode-strip"><span>||||||| ||||| |||| |||||| ||||| ||||</span></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="Index Page.js"></script>
+    <script src="Edit.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        document.addEventListener("DOMContentLoaded", function () {
+            var cardsData = [
+                { id: "qrCanvas1", data: { fullName: "Kavindu Perera", indexNumber: "IT-2024-0101", department: "Software Eng." } },
+                { id: "qrCanvas2", data: { fullName: "Dinuka Madushan", indexNumber: "IT-2024-0142", department: "Cybersecurity" } },
+                { id: "qrCanvas3", data: { fullName: "Sanjana Fernando", indexNumber: "IT-2024-0189", department: "Interactive Media" } },
+                { id: "qrCanvas4", data: { fullName: "Tharushi Silva", indexNumber: "IT-2024-0215", department: "Graphic Design" } }
+            ];
+            cardsData.forEach(function (c) {
+                var el = document.getElementById(c.id);
+                if (el && typeof QRCode !== "undefined") {
+                    QRCode.toCanvas(el, JSON.stringify(c.data), { width: 68, margin: 1 });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

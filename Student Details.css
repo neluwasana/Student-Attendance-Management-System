@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg-primary: #0b0f19;
+    --bg-card: #161e31;
+    --bg-input: #0e1526;
+    --border-color: #26334d;
+    --primary: #7c3aed;
+    --primary-light: #a855f7;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background-color: var(--bg-primary);
+    font-family: var(--font-family);
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 30px 20px;
+}
+
+.container-table {
+    max-width: 1400px; margin: 0 auto;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px; padding: 32px;
+    position: relative; box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+}
+
+.close {
+    position: absolute; top: 20px; right: 24px;
+    color: var(--text-muted); font-size: 28px; cursor: pointer;
+}
+.close:hover { color: #f87171; }
+
+h2 {
+    font-size: 24px; font-weight: 800; text-align: center;
+    margin-bottom: 24px; display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+h2 i { color: var(--primary-light); }
+
+/* Add Student Form */
+#studentForm {
+    display: none; background: #0f172a;
+    border: 1px solid var(--border-color); border-radius: 14px;
+    padding: 24px; margin-bottom: 24px;
+}
+.details {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;
+    margin-bottom: 16px;
+}
+.details input {
+    width: 100%; padding: 10px 14px; background: var(--bg-input);
+    border: 1px solid var(--border-color); border-radius: 8px;
+    color: #fff; font-size: 13px; font-family: inherit;
+}
+.details input:focus { border-color: var(--primary); outline: none; }
+.save-btn {
+    padding: 10px 20px; background: var(--primary); color: #fff;
+    border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: inherit;
+}
+.save-btn:hover { background: #9333ea; }
+
+/* Top Bar (Search + Buttons) */
+.top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 24px; flex-wrap: wrap;
+}
+#searchBar {
+    flex: 1; min-width: 260px; max-width: 500px;
+    padding: 12px 16px; background: var(--bg-input);
+    border: 1px solid var(--border-color); border-radius: 10px;
+    color: #fff; font-size: 14px; font-family: inherit;
+}
+#searchBar:focus { border-color: var(--primary); outline: none; }
+
+.Print-btn, .form-btn {
+    padding: 11px 18px; border-radius: 10px; border: none;
+    font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; gap: 8px;
+}
+.Print-btn { background: #0284c7; color: #fff; }
+.Print-btn:hover { background: #0369a1; }
+.form-btn { background: var(--primary); color: #fff; }
+.form-btn:hover { background: #9333ea; }
+
+/* Records Table */
+table {
+    width: 100%; border-collapse: collapse; text-align: left;
+    font-size: 13px; overflow-x: auto; display: block;
+}
+thead, tbody { display: table; width: 100%; table-layout: fixed; }
+th {
+    padding: 12px; background: rgba(14, 21, 38, 0.9);
+    color: var(--text-muted); font-size: 11px; text-transform: uppercase;
+    border-bottom: 1px solid var(--border-color);
+}
+td {
+    padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #fff; word-break: break-word;
+}
+tr:hover td { background: rgba(124, 58, 237, 0.05); }
+
+.actions { display: flex; flex-direction: row; gap: 6px; flex-wrap: nowrap; white-space: nowrap; }
+td.actions { white-space: nowrap; }
+.Edit-btn, .Delete-btn {
+    padding: 5px 10px; border-radius: 6px; border: none;
+    font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;
+    white-space: nowrap; flex-shrink: 0;
+}
+.Edit-btn { background: #f59e0b; color: #000; }
+.Delete-btn { background: #ef4444; color: #fff; }
+.Edit-btn:hover { opacity: 0.9; }
+.Delete-btn:hover { opacity: 0.9; }
+
+@media (max-width: 768px) {
+    .container-table { padding: 16px; }
+    .top-bar { flex-direction: column; align-items: stretch; }
+}

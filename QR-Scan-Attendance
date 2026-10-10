@@ -1,0 +1,105 @@
+let scanner = null;
+let scanRecords = JSON.parse(localStorage.getItem('qrScanRecords')) || [];
+
+const previewElement = document.getElementById('preview');
+const startScanBtn = document.getElementById('startScan');
+const stopScanBtn = document.getElementById('stopScan');
+const resultElement = document.getElementById('result');
+const recordsBody = document.getElementById('recordsBody');
+const summaryBtn = document.getElementById('summaryBtn');
+const summaryModal = document.getElementById('summaryModal');
+const summaryContent = document.getElementById('summaryContent');
+const closeModal = document.querySelector('.close-modal');
+const filterInput = document.getElementById('filterInput');
+const filterBtn = document.getElementById('filterBtn');
+
+function initScanner() {
+    scanner = new Instascan.Scanner({ video: previewElement });
+    scanner.addListener('scan', function(content) {
+        try {
+            const scanData = JSON.parse(content);
+            if (!scanData.fullName) throw new Error("Invalid format");
+            processScan(scanData);
+        } catch (e) {
+            resultElement.innerHTML = `<span style="color:red;">Error: Invalid QR code format.</span>`;
+        }
+    });
+}
+
+function processScan(scanData) {
+    const now = new Date();
+    const currentDate = now.toLocaleDateString();
+    const currentTime = now.toLocaleTimeString();
+
+    const existingIndex = scanRecords.findIndex(r => r.fullName === scanData.fullName && r.date === currentDate && !r.outTime);
+    if (existingIndex !== -1) {
+        scanRecords[existingIndex].outTime = currentTime;
+        resultElement.innerHTML = `<strong>${scanData.fullName}</strong> checked out at ${currentTime}`;
+    } else {
+        scanRecords.push({
+            fullName: scanData.fullName,
+            inTime: currentTime,
+            outTime: '',
+            date: currentDate,
+            timestamp: now.getTime()
+        });
+        resultElement.innerHTML = `<strong>${scanData.fullName}</strong> checked in at ${currentTime}`;
+    }
+    localStorage.setItem('qrScanRecords', JSON.stringify(scanRecords));
+    displayRecords();
+}
+
+function displayRecords(filterName = '') {
+    recordsBody.innerHTML = '';
+    const filtered = filterName 
+        ? scanRecords.filter(r => r.fullName.toLowerCase().includes(filterName.toLowerCase()))
+        : scanRecords;
+    filtered.sort((a, b) => b.timestamp - a.timestamp);
+
+    if (filtered.length === 0) {
+        recordsBody.innerHTML = '<tr><td colspan="5">No records found</td></tr>';
+        return;
+    }
+
+    filtered.forEach((r, i) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${r.fullName}</td>
+            <td>${r.inTime}</td>
+            <td>${r.outTime || 'Active'}</td>
+            <td>${r.date}</td>
+            <td><button onclick="deleteRecord(${i})">Delete</button></td>
+        `;
+        recordsBody.appendChild(row);
+    });
+}
+
+function deleteRecord(index) {
+    if (confirm('Delete this record?')) {
+        scanRecords.splice(index, 1);
+        localStorage.setItem('qrScanRecords', JSON.stringify(scanRecords));
+        displayRecords();
+    }
+}
+
+function showSummary() {
+    summaryContent.innerHTML = '';
+    if (scanRecords.length === 0) {
+        summaryContent.innerHTML = '<p>No records found.</p>';
+    } else {
+        const counts = {};
+        scanRecords.forEach(r => { counts[r.fullName] = (counts[r.fullName] || 0) + 1; });
+        for (let name in counts) {
+            summaryContent.innerHTML += `<div><strong>${name}</strong>: ${counts[name]} scans</div>`;
+        }
+    }
+    summaryModal.style.display = 'flex';
+}
+
+if (startScanBtn) startScanBtn.addEventListener('click', () => { initScanner(); Instascan.Camera.getCameras().then(c => { if(c.length) scanner.start(c[0]); }); });
+if (stopScanBtn) stopScanBtn.addEventListener('click', () => { if (scanner) scanner.stop(); });
+if (summaryBtn) summaryBtn.addEventListener('click', showSummary);
+if (closeModal) closeModal.addEventListener('click', () => summaryModal.style.display = 'none');
+if (filterBtn) filterBtn.addEventListener('click', () => displayRecords(filterInput.value.trim()));
+
+displayRecords();

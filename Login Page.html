@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | IT ACADEMY </title>
+    <link rel="icon" type="image/jpg" href="VG.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="Login.css">
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <div class="login-container">
+            <!-- Replaceable Logo Placeholder -->
+            <div class="logo-placeholder-container" title="IT ACADEMY - Replaceable Brand Logo">
+                <div class="logo-frame">
+                    <img src="VG.jpg" alt=" Logo" class="image-animation-front"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-fallback" style="display:none;">VG</div>
+                </div>
+                <h1 class="system-title">IT ACADEMY</h1>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username" value="admin" autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" autocomplete="current-password">
+            </div>
+
+            <button type="button" onclick="login()"><i class="fa fa-sign-in-alt"></i> Sign In</button>
+
+            <div class="forgot-password" onclick="openForgotPassword()">Forgot Password?</div>
+        </div>
+    </div>
+
+    <!-- Password Reset Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForgotPassword()">&times;</span>
+            <h3>Reset Password</h3>
+            <p>Enter your username and new password to update credentials:</p>
+            <div class="form-group">
+                <label for="resetUsername">Username</label>
+                <input type="text" id="resetUsername" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" placeholder="Enter new password">
+            </div>
+            <button type="button" onclick="resetPassword()"><i class="fa fa-key"></i> Update Password</button>
+        </div>
+    </div>
+
+    <script src="Login.js"></script>
+</body>
+
+</html>

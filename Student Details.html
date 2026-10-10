@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Records |IT ACADEMY </title>
+    <link rel="icon" type="image/jpg" href="VG.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="Student Details.css">
+</head>
+
+<body>
+
+    <div class="container-table">
+        <!-- Back button using close class (preserved for JS compatibility) -->
+        <span class="close" onclick="closeForgotPassword()" title="Back to Admin Panel">&times;</span>
+
+        <h2><i class="fa fa-users"></i>IT ACADEMY Student Records</h2>
+
+        <!-- Add Student Form (hidden by default — controlled by JS) -->
+        <form id="studentForm" onsubmit="saveStudent(event)">
+            <div class="details">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="text" id="fatherName" placeholder="Father's Name" required>
+                <input type="text" id="email" placeholder="Email Address" required>
+                <input type="text" id="gender" placeholder="Gender" required>
+                <input type="text" id="contact" placeholder="Contact Number" required>
+                <input type="text" id="motherName" placeholder="Mother's Name" required>
+                <input type="text" id="nic" placeholder="NIC Number" required>
+                <input type="text" id="course" placeholder="Address" required>
+                <input type="date" id="dob" placeholder="Date of Birth" required>
+            </div>
+            <button type="submit" class="save-btn"><i class="fa fa-save"></i> Save Student</button>
+        </form>
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <input type="text" id="searchBar" placeholder="&#xf002;  Search students by name, ID, email&hellip;">
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="Print-btn" onclick="printStudent()" type="button">
+                    <i class="fa fa-print"></i> Print
+                </button>
+                <button class="form-btn" onclick="showForm()" type="button">
+                    <i class="fa fa-user-plus"></i> Add Student
+                </button>
+            </div>
+        </div>
+
+        <!-- Records Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Student ID</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Contact Number</th>
+                    <th>Mother Name</th>
+                    <th>NIC Number</th>
+                    <th>Address</th>
+                    <th>DOB</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentTable"></tbody>
+        </table>
+    </div>
+
+
+
+    <script src="student-details.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Student ID Card | IT ACADEMY</title>
+  <link rel="icon" type="image/jpg" href="VG.jpg">
+  <link rel="stylesheet" href="create-card.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Libraries: QR, html2canvas, jsPDF, html2pdf -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container-create-card">
+    <!-- Back button -->
+    <span class="close" onclick="closeForgotPassword()" title="Back to Admin Panel">&times;</span>
+
+    <div class="card-design">
+      <div class="container-main">
+
+        <!-- LEFT: Student Information Form -->
+        <section class="st-details">
+          <h1 class="Stu_info"><i class="fa fa-id-card"></i> Student Information</h1>
+          <form id="studentForm" class="student_form" onsubmit="return false;">
+
+            <div>
+              <label for="fullname" class="full-name">Full Name</label>
+              <input id="fullname" type="text" placeholder="Enter student full name" />
+            </div>
+
+            <div>
+              <label for="indexnumber" class="index-number">Index Number</label>
+              <input id="indexnumber" type="text" placeholder="e.g. 17491XXXXXXXX" />
+            </div>
+
+            <div>
+              <label for="department" class="department">Year / Programme</label>
+              <input id="department" type="text" placeholder="e.g. Year 2 – Graphic Design" />
+            </div>
+
+            <div>
+              <label class="student-photo">Student Photo</label>
+              <label for="photo-upload" class="student-photo-input">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Click to upload photo</span>
+                <span style="font-size:11px; color:#64748b;">PNG or JPG</span>
+                <input id="photo-upload" type="file" accept="image/png, image/jpeg" class="upload-box">
+              </label>
+            </div>
+
+          </form>
+        </section>
+
+        <!-- RIGHT: Card Preview -->
+        <section class="card-preview">
+          <!-- The card that gets downloaded (id="invoice") -->
+          <div class="card" id="invoice">
+            <div id="cardPreview" class="cardPreview">
+
+              <!-- Logo + Student ID row -->
+              <div class="card-box">
+                <div class="card-logo">
+                  <img id="cardLogoImg" src="VG.jpg" alt="Academy Logo">
+                </div>
+                <div id="studentID" class="student-id">17491XXXXXXXX</div>
+              </div>
+
+              <!-- Photo + Name + Department -->
+              <div class="picture-stu">
+                <div class="picture-stu-input">
+                  <!-- Default icon shown when no photo uploaded -->
+                  <i id="defaultUserIcon" class="fas fa-user-circle" style="font-size:70px; color:#4a5568;"></i>
+                  <!-- Student photo (hidden until uploaded) -->
+                  <img id="studentPhoto" src="" alt="Student Photo" class="studentPhoto" style="display:none;" />
+                </div>
+                <p id="studentNamePreview" class="studentNamePreview">Student Name</p>
+                <p id="departmentPreview" class="departmentPreview">Year / Programme</p>
+              </div>
+
+              <!-- QR Code (canvas inserted here by JS) -->
+              <div id="qrCodeContainer" class="qrCodeContainer"></div>
+
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="buttons">
+            <button id="generateBtn" class="generate-qr-btn" type="button">
+              <i class="fas fa-qrcode"></i> Generate QR
+            </button>
+            <button id="download" class="card-save-btn" type="button">
+              <i class="fas fa-file-download"></i> Download PDF
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="Create-card.js"></script>
+
+</body>
+</html>
